@@ -1,0 +1,28 @@
+name: Run Stock Notifier
+
+on:
+  schedule:
+    - cron: "0 13 * * 1-5"   # 每週一到五早上9點 (UTC)
+  workflow_dispatch:         # 允許手動觸發
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run notifier
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python stock_signal_notifier.py

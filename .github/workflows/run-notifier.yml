@@ -23,6 +23,6 @@ jobs:
       - name: Run notifier
         env:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
-          EMAIL_PASS: ${{ secrets.EMAIL_APP_PASSWORD }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python stock_signal_notifier.py

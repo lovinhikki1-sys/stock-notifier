@@ -7,7 +7,7 @@ Quick start (Windows / macOS / Linux):
 
 2) Create a .env file (same folder) with:
    EMAIL_USER=your_gmail_address@gmail.com
-   EMAIL_APP_PASSWORD=your_gmail_app_password   # create via Google Account > Security > 2‑Step Verification > App passwords
+   EMAIL_PASS=your_gmail_app_password   # create via Google Account > Security > 2‑Step Verification > App passwords
    EMAIL_TO=recipient_email@gmail.com            # can be the same as EMAIL_USER
 
 3) Edit TICKERS below.
@@ -211,7 +211,7 @@ def build_report(rows: list[str]) -> str:
 
 def send_email(subject: str, body: str) -> bool:
     user = os.getenv("EMAIL_USER")
-    app_pw = os.getenv("EMAIL_APP_PASSWORD")
+    app_pw = os.getenv("EMAIL_PASS")
     to_addr = os.getenv("EMAIL_TO", user or "")
     if not (YAGMAIL_AVAILABLE and user and app_pw and to_addr):
         return False
